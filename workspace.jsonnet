@@ -1,0 +1,6 @@
+{
+    name: 'cv',
+    projects: {
+        cv: '.'
+    }
+}

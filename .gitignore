@@ -1,0 +1,8 @@
+dist
+.parcel-cache
+node_modules
+
+.blaze/*
+!.blaze/helpers
+!.blaze/.jpath
+!.blaze/variables.*
