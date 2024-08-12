@@ -9,6 +9,8 @@ local image = 'registry.rnzaou.me/cv';
                 invalidateWhen: {
                     inputChanges: [
                         'package.json',
+                    ],
+                    outputChanges: [
                         'package-lock.json'
                     ],
                     filesMissing: ['node_modules']
@@ -71,7 +73,7 @@ local image = 'registry.rnzaou.me/cv';
                 'build-bundle'
             ]
         },
-        'deploy-image': {
+        publish: {
             executor: 'std:commands',
             options: {
                 commands: [
@@ -158,9 +160,6 @@ local image = 'registry.rnzaou.me/cv';
                     }
                 ]
             }
-        },
-        publish: {
-            dependencies: ['deploy-image']
         }
     }
 }

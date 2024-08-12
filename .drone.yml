@@ -1,0 +1,29 @@
+---
+image_pull_secrets:
+- DOCKER_REGISTRY_AUTHENTICATION_JSON
+kind: pipeline
+name: CI/CD pipeline
+steps:
+- commands:
+  - blaze run ci:docker-authenticate
+  - blaze run cv:publish
+  image: registry.rnzaou.me/ci:latest
+  name: publish
+  pull: always
+  volumes:
+  - name: docker-socket
+    path: /var/run/docker.sock
+trigger:
+  event:
+  - custom
+  - push
+type: docker
+volumes:
+- host:
+    path: /run/user/1002/docker.sock
+  name: docker-socket
+---
+kind: signature
+hmac: bda22ff80f79dcaec75d48e2a16265ea1d87e8b51d9af2f0b222dd13e8a8b6d8
+
+...

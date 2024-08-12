@@ -6,3 +6,5 @@ node_modules
 !.blaze/helpers
 !.blaze/.jpath
 !.blaze/variables.*
+
+.user.env
