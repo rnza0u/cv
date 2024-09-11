@@ -3,17 +3,25 @@ local Step = function(config){
     image: 'registry.rnzaou.me/ci:latest',
 } + config;
 
-local ci = {
+local publish = {
     kind: 'pipeline',
     type: 'docker',
-    name: 'CI/CD pipeline',
+    name: 'Publishing pipeline',
     steps: [
         Step({
             name: 'publish',
             commands: [
-                'blaze run ci:docker-authenticate',
-                'blaze run cv:publish'
+                'blaze run cv:publish',
+                'blaze run cv:deploy'
             ],
+            environment: {
+                DOCKER_REGISTRY_USERNAME: {
+                    from_secret: 'DOCKER_REGISTRY_USERNAME'
+                },
+                DOCKER_REGISTRY_PASSWORD: {
+                    from_secret: 'DOCKER_REGISTRY_PASSWORD'
+                }
+            },
             volumes: [
                 {
                     name: 'docker-socket',
@@ -23,6 +31,7 @@ local ci = {
         })
     ],
     trigger: {
+        branch: ['master'],
         event: ['custom', 'push']
     },
     volumes: [
@@ -36,4 +45,4 @@ local ci = {
     image_pull_secrets: ['DOCKER_REGISTRY_AUTHENTICATION_JSON'],
 };
 
-[ci]
+[publish]

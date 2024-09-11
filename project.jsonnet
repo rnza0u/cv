@@ -87,6 +87,7 @@ local image = 'registry.rnzaou.me/cv';
                 ]
             },
             dependencies: [
+                'ci:docker-authenticate',
                 'build-image'
             ]
         },
