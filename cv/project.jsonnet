@@ -1,9 +1,10 @@
 local image = 'registry.rnzaou.me/cv';
+local languages = ['en', 'fr'];
 
 {
     targets: {
         install: {
-            description: 'Install dependencies',
+            description: 'Install dependencies.',
             executor: 'std:commands',
             cache: {
                 invalidateWhen: {
@@ -18,22 +19,16 @@ local image = 'registry.rnzaou.me/cv';
             },
             options: {
                 commands: [
-                    {
-                        program: 'npm',
-                        arguments: ['install']
-                    }
+                    'npm ci'
                 ]
             }
         },
-        'build-bundle': {
+        'build-website': {
             executor: 'std:commands',
-            description: 'Build the website files for production.',
+            description: 'Build the website files.',
             options: {
                 commands: [
-                    {
-                        program: 'npm',
-                        arguments: ['run', 'build']
-                    }
+                    'node src/builder/main.mjs'
                 ]
             },
             cache: {
@@ -42,31 +37,41 @@ local image = 'registry.rnzaou.me/cv';
                         'src/**'
                     ],
                     outputChanges: [
-                        'dist/**'
+                        'build/**'
                     ]
                 }
             },
             dependencies: ['install']
         },
-        'build-image': {
+        'build-bundle': {
             executor: 'std:commands',
-            description: 'Build the Docker image',
+            description: 'Build the production bundle.',
             options: {
                 commands: [
-                    {
-                        program: 'docker',
-                        arguments: [
-                            'build',
-                            '-t',
-                            image,
-                            '.'
-                        ]
-                    }
+                    'rm -rf dist',
+                    './node_modules/.bin/parcel build --no-source-maps ' + std.join(' ', ['build/' + lang + '/index.html' for lang in languages])
                 ]
             },
             cache: {
                 invalidateWhen: {
-                    inputChanges: ['Dockerfile']
+                    outputChanges: [
+                        'dist/**'
+                    ]
+                }
+            },
+            dependencies: ['build-website']
+        },
+        'build-image': {
+            executor: 'std:commands',
+            description: 'Build the Docker image.',
+            options: {
+                commands: [
+                    'docker build -t ' + image + ' .'
+                ]
+            },
+            cache: {
+                invalidateWhen: {
+                    inputChanges: ['Dockerfile', 'conf/**']
                 }
             },
             dependencies: [
@@ -75,15 +80,10 @@ local image = 'registry.rnzaou.me/cv';
         },
         publish: {
             executor: 'std:commands',
+            description: 'Publish the Docker image.',
             options: {
                 commands: [
-                    {
-                        program: 'docker',
-                        arguments: [
-                            'push',
-                            image
-                        ]
-                    }
+                    'docker push ' + image
                 ]
             },
             dependencies: [
@@ -96,16 +96,14 @@ local image = 'registry.rnzaou.me/cv';
             description: 'Serve in dev mode with parcel.',
             options: {
                 commands: [
-                    {
-                        program: './node_modules/.bin/parcel'
-                    }
+                    './node_modules/.bin/parcel build/{{ vars.dev.lang }}/index.html'
                 ]
             },
-            dependencies: ['install']
+            dependencies: ['build-website']
         },
         'serve-compose': {
             executor: 'std:commands',
-            description: 'Build for production and serve locally (for testing purpose only).',
+            description: 'Build for production and serve locally using docker compose (for testing purpose only).',
             options: {
                 commands: [
                     {
@@ -156,6 +154,7 @@ local image = 'registry.rnzaou.me/cv';
                             '-rf',
                             '.parcel-cache',
                             'dist',
+                            'build',
                             'node_modules'
                         ]
                     }

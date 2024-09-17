@@ -1,6 +1,7 @@
-dist
-.parcel-cache
-node_modules
+cv/build
+cv/dist
+cv/.parcel-cache
+cv/node_modules
 
 .blaze/*
 !.blaze/helpers
@@ -8,3 +9,4 @@ node_modules
 !.blaze/variables.*
 
 .user.env
+

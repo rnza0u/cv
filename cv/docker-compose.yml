@@ -1,6 +1,7 @@
 services:
   cv:
     image: registry.rnzaou.me/cv:latest
+    container_name: cv
     restart: always
     expose:
       - 80/tcp

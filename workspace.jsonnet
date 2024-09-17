@@ -1,7 +1,6 @@
 {
     name: 'cv',
     projects: {
-        cv: '.',
-        ci: 'ci'
+        [path]: path for path in ['ci', 'cv']
     }
 }

@@ -1,5 +1,6 @@
 services:
   cv:
     image: registry.rnzaou.me/cv
+    container_name: cv
     ports:
       - "127.0.0.1:23000:80"
