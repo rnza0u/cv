@@ -4,10 +4,6 @@ import { join } from 'path'
 
 const langs = ['en', 'fr']
 
-const template = Handlebars.compile(await readFile('src/templates/index.handlebars', 'utf-8'), {
-    noEscape: true,
-    strict: true,
-})
 const target = (() => {
     const value = process.env['CV_TARGET']
     switch (value){
@@ -20,10 +16,6 @@ const target = (() => {
     throw Error(`unknown build target ${value}`)
 })()
 
-Handlebars.registerHelper('isWeb', function(){
-    return target === 'web'
-})
-
 const buildDir = `build/${target}`
 
 console.log(`building for target "${target}"`)
@@ -31,11 +23,17 @@ console.log(`building for target "${target}"`)
 console.log(`removing build directory`)
 await rm(buildDir, { force: true, recursive: true })
 
+const template = Handlebars.compile(await readFile('src/templates/index.handlebars', 'utf-8'), {
+    noEscape: true,
+    strict: true
+})
+
 for (const lang of langs){
     console.log(`rendering ${lang}/index.html`)
     const translations = JSON.parse(await readFile(`src/translations/${lang}.json`))
     const rendered = template(
         {
+            isWeb: target === 'web',
             lang,
             target,
             i18n: translations
