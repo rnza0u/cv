@@ -5,7 +5,7 @@ kind: pipeline
 name: Publishing pipeline
 steps:
 - commands:
-  - blaze run cv:publish
+  - 'blaze --jsonnet-var ''{ playwright: { installDeps: false } }'' run cv:publish'
   - blaze run cv:deploy
   environment:
     DOCKER_REGISTRY_PASSWORD:
@@ -31,6 +31,6 @@ volumes:
   name: docker-socket
 ---
 kind: signature
-hmac: 10e308af512d24e2211d4f47a61224dc13ef87d525629c91b44a8c2f0058e615
+hmac: 3977ea38e7235f970abe88f836da5bcf36f1c2171380c3fa10938885ee9c0a2d
 
 ...

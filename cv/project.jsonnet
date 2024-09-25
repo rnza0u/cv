@@ -1,5 +1,6 @@
 local image = 'registry.rnzaou.me/cv';
 local languages = ['en', 'fr'];
+local blaze = std.extVar('blaze');
 
 {
     targets: {
@@ -19,9 +20,8 @@ local languages = ['en', 'fr'];
             },
             options: {
                 commands: [
-                    'npm ci',
-                    'npx playwright install --with-deps'
-                ]
+                    'npm ci'
+                ] +  (if blaze.vars.playwright.installDeps then ['npx playwright install --with-deps'] else [])
             }
         },
         source: {
