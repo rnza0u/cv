@@ -3,7 +3,16 @@ const items = [
         name: "phone", 
         render: () => {
             const span = document.createElement('span')
-            span.textContent = window.atob("KzMzLjYuNDkuOTMuOTEuNTE=")
+            const getBase64 = () => {
+                switch (document.documentElement.lang){
+                    case 'fr':
+                        return 'MDYuNDkuOTMuOTEuNTE='
+                    case 'en':
+                    default:
+                        return 'KzMzLjYuNDkuOTMuOTEuNTE='
+                }
+            }
+            span.textContent = window.atob(getBase64())
             return span
         } 
     },

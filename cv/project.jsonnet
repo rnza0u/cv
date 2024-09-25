@@ -19,16 +19,97 @@ local languages = ['en', 'fr'];
             },
             options: {
                 commands: [
-                    'npm ci'
+                    'npm ci',
+                    'npx playwright install --with-deps'
                 ]
             }
         },
-        'build-website': {
+        source: {
+            description: 'The build source files.',
+            cache: {
+                invalidateWhen: {
+                    inputChanges: ['src/**']
+                }
+            }
+        },
+        'build-pdf-files': {
             executor: 'std:commands',
-            description: 'Build the website files.',
+            description: 'Build the cv files for PDF target.',
+            cache: {
+                invalidateWhen: {
+                    outputChanges: ['build/pdf/**']
+                }
+            },
             options: {
                 commands: [
-                    'node src/builder/main.mjs'
+                    {
+                        program: 'node',
+                        arguments: ['src/builder/build.mjs'],
+                        environment: {
+                            CV_TARGET: 'pdf'
+                        }
+                    }
+                ]
+            },
+            dependencies: ['source', 'install']
+        },
+        'build-pdf-bundle': {
+            executor: 'std:commands',
+            description: 'Build the PDF files.',
+            cache: {
+                invalidateWhen: {
+                    outputChanges: ['pdfs/**']
+                }
+            },
+            options: {
+                commands: [
+                    {
+                        program: 'docker',
+                        arguments: [
+                            'compose', 
+                            '-f', 
+                            'docker-compose-dev.yml',
+                            'up', 
+                            '--build',
+                            '--detach',
+                            '--force-recreate'
+                        ],
+                        environment: {
+                            CV_BUNDLE: 'build/pdf'
+                        }
+                    },
+                    {
+                        program: 'node',
+                        arguments: ['src/builder/export-pdf.mjs']
+                    },
+                    {
+                        program: 'docker',
+                        arguments: [
+                            'compose', 
+                            '-f', 
+                            'docker-compose-dev.yml',
+                            'down'
+                        ],
+                        environment: {
+                            CV_BUNDLE: 'build/pdf'
+                        }
+                    }
+                ]
+            },
+            dependencies: ['build-pdf-files']
+        },
+        'build-web-files': {
+            executor: 'std:commands',
+            description: 'Build the cv files for web target.',
+            options: {
+                commands: [
+                    {
+                        program: 'node',
+                        arguments: ['src/builder/build.mjs'],
+                        environment: {
+                            CV_TARGET: 'web'
+                        }
+                    }
                 ]
             },
             cache: {
@@ -37,19 +118,19 @@ local languages = ['en', 'fr'];
                         'src/**'
                     ],
                     outputChanges: [
-                        'build/**'
+                        'build/web/**'
                     ]
                 }
             },
-            dependencies: ['install']
+            dependencies: ['source', 'install']
         },
-        'build-bundle': {
+        'build-web-bundle': {
             executor: 'std:commands',
-            description: 'Build the production bundle.',
+            description: 'Build the production web bundle.',
             options: {
                 commands: [
                     'rm -rf dist',
-                    './node_modules/.bin/parcel build --no-source-maps ' + std.join(' ', ['build/' + lang + '/index.html' for lang in languages])
+                    './node_modules/.bin/parcel build --no-source-maps ' + std.join(' ', ['build/web/' + lang + '/index.html' for lang in languages])
                 ]
             },
             cache: {
@@ -59,7 +140,7 @@ local languages = ['en', 'fr'];
                     ]
                 }
             },
-            dependencies: ['build-website']
+            dependencies: ['build-web-files']
         },
         'build-image': {
             executor: 'std:commands',
@@ -75,7 +156,7 @@ local languages = ['en', 'fr'];
                 }
             },
             dependencies: [
-                'build-bundle'
+                'build-web-bundle'
             ]
         },
         publish: {
@@ -96,10 +177,10 @@ local languages = ['en', 'fr'];
             description: 'Serve in dev mode with parcel.',
             options: {
                 commands: [
-                    './node_modules/.bin/parcel build/{{ vars.dev.lang }}/index.html'
+                    './node_modules/.bin/parcel build/web/{{ vars.dev.lang }}/index.html'
                 ]
             },
-            dependencies: ['build-website']
+            dependencies: ['build-web-files']
         },
         'serve-compose': {
             executor: 'std:commands',
@@ -113,16 +194,13 @@ local languages = ['en', 'fr'];
                             '-f', 
                             'docker-compose-dev.yml',
                             'up', 
-                            '--pull', 
-                            'never', 
+                            '--build',
                             '--force-recreate'
                         ]
                     }
                 ]
             },
-            dependencies: [
-                'build-image'
-            ]
+            dependencies: ['build-web-bundle']
         },
         deploy: {
             executor: 'std:commands',
@@ -154,6 +232,7 @@ local languages = ['en', 'fr'];
                             '-rf',
                             '.parcel-cache',
                             'dist',
+                            'pdfs',
                             'build',
                             'node_modules'
                         ]

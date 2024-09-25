@@ -11,7 +11,9 @@
 </head>
 
 <body>
+    {{#if isWeb}}
     <div id="loader-wrapper"><img src="../images/loader-white.svg" id="loader" /></div>
+    {{/if}}
     <main role="main">
         <div class="p-5">
             <div class="mb-2">
@@ -19,11 +21,25 @@
                     <figcaption class="mb-1">{{ i18n.contact.heading }}</figcaption>
                     <ul class="secondary-list contact-list mb-1">
                         <li>N'zaou Renaud</li>
-                        <li>{{ i18n.contact.phone-number }}: <span id="phone-placeholder">{{ i18n.contact.hidden }}</span></li>
-                        <li>{{ i18n.contact.email-address }}: <span id="email-placeholder">{{ i18n.contact.hidden }}</span></li>
+                        <li>
+                            {{ i18n.contact.phone-number.label }}: 
+                            {{#if isWeb}}
+                            <span id="phone-placeholder">{{ i18n.contact.hidden }}</span>
+                            {{else}}
+                            {{ i18n.contact.phone-number.value }}
+                            {{/if}}
+                        </li>
+                        <li>
+                            {{ i18n.contact.email-address }}: 
+                            {{#if isWeb}}
+                            <span id="email-placeholder">{{ i18n.contact.hidden }}</span>
+                            {{else}}
+                            <a href="mailto:nzaou.renaud@gmail.com">nzaou.renaud@gmail.com</a>
+                            {{/if}}
+                        </li>
                         <li>{{ i18n.contact.location }}: Lyon, France</li>
                     </ul>
-                    <button id="show-contact-fields">{{ i18n.contact.show-button }}</button>
+                    {{#if isWeb}}<button id="show-contact-fields">{{ i18n.contact.show-button }}</button>{{/if}}
                 </figure>
             </div>
             <div class="mb-2">
@@ -31,6 +47,7 @@
             </div>
             <div class="mb-2">
                 <h1 class="mb-1">{{ i18n.title.heading }}</h1>
+                {{#if isWeb}}
                 <div class="mb-1" id="lang-selection">
                     <a class="lang-selector" href="../en/index.html">
                         <img alt="English" src="../images/royaume-uni.png"/>
@@ -39,6 +56,7 @@
                         <img alt="Français" src="../images/france.png"/>
                     </a>
                 </div>
+                {{/if}}
                 <p class="text-center">{{ i18n.title.introduction }}</p>
             </div>
             <div class="mb-2">
@@ -135,7 +153,9 @@
         </div>
     </main>
     <script type="module" src="../js/loader.js"></script>
+    {{#if isWeb}}
     <script type="module" src="../js/contact.js"></script>
+    {{/if}}
 </body>
 
 </html>

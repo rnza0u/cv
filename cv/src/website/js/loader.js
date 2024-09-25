@@ -7,4 +7,7 @@ const age = (currentDate.getFullYear() - birthDate.getFullYear()) - (hadBirthDay
 
 document.querySelector('#current-age').textContent = age.toString()
 
-document.querySelector('#loader-wrapper').classList.add('faded-out')
+const loader = document.querySelector('#loader-wrapper')
+
+if (loader)
+    loader.classList.add('faded-out')

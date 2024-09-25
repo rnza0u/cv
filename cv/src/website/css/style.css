@@ -37,6 +37,10 @@ p {
     margin-bottom: 8px;
 }
 
+a {
+    color: white;
+}
+
 td {
     color: white;
     padding: 8px;

@@ -1,6 +1,10 @@
 services:
   cv:
-    image: registry.rnzaou.me/cv
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - CV_BUNDLE=${CV_BUNDLE:-dist/}
     container_name: cv
     ports:
       - "127.0.0.1:23000:80"

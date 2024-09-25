@@ -1,11 +1,32 @@
-import mustache from 'mustache'
+import Handlebars from 'handlebars'
 import { mkdir, readFile, rm, writeFile, cp } from 'fs/promises'
 import { join } from 'path'
 
-const buildDir = 'build'
-// first language is default
 const langs = ['en', 'fr']
-const template = await readFile('src/templates/index.mustache', 'utf-8')
+
+const template = Handlebars.compile(await readFile('src/templates/index.handlebars', 'utf-8'), {
+    noEscape: true,
+    strict: true,
+})
+const target = (() => {
+    const value = process.env['CV_TARGET']
+    switch (value){
+        case 'web':
+        case undefined:
+            return 'web'
+        case 'pdf':
+            return 'pdf'
+    }
+    throw Error(`unknown build target ${value}`)
+})()
+
+Handlebars.registerHelper('isWeb', function(){
+    return target === 'web'
+})
+
+const buildDir = `build/${target}`
+
+console.log(`building for target "${target}"`)
 
 console.log(`removing build directory`)
 await rm(buildDir, { force: true, recursive: true })
@@ -13,15 +34,11 @@ await rm(buildDir, { force: true, recursive: true })
 for (const lang of langs){
     console.log(`rendering ${lang}/index.html`)
     const translations = JSON.parse(await readFile(`src/translations/${lang}.json`))
-    const rendered = mustache.render(
-        template, 
+    const rendered = template(
         {
             lang,
+            target,
             i18n: translations
-        }, 
-        undefined, 
-        {
-            escape: s => s
         }
     )
     const outDir = join(buildDir, lang)
@@ -32,7 +49,7 @@ for (const lang of langs){
 }
 
 console.log('copying website assets...')
-await cp('src/website', 'build', {
+await cp('src/website', buildDir, {
     recursive: true,
     force: true
 })

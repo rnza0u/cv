@@ -4,7 +4,10 @@
     },
     "contact": {
         "heading": "Informations de contact",
-        "phone-number": "Téléphone",
+        "phone-number": {
+            "label": "Téléphone",
+            "value": "06.49.93.91.51"
+        },
         "email-address": "Adresse email",
         "location": "Localisation",
         "show-button": "Afficher les champs masqués",

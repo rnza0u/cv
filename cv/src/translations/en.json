@@ -4,7 +4,10 @@
     },
     "contact": {
         "heading": "Contact information",
-        "phone-number": "Phone number",
+        "phone-number": {
+            "label": "Phone number",
+            "value": "+33.6.49.93.91.51"
+        },
         "email-address": "Email address",
         "location": "Location",
         "show-button": "Show hidden fields",
