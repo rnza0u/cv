@@ -52,7 +52,7 @@
         "heading": "Career",
         "companies": {
             "vittascience": {
-                "position": "Web developer at <a target=\"_blank\" href=\"https://vittascience.com\">Vittascience</a>",
+                "position": "2018: Web developer at <a target=\"_blank\" href=\"https://vittascience.com\">Vittascience</a>",
                 "tasks": {
                     "website-construction": "Website construction.",
                     "arduino-web": "Built an Arduino web IDE for young people.",
@@ -60,7 +60,7 @@
                 }
             },
             "itnovem": {
-                "position": "Pentester and developer at <a href=\"https://www.itnovem.com/\" target=\"_blank\">ITNOVEM</a>",
+                "position": "2019-2023: Pentester and developer at <a href=\"https://www.itnovem.com/\" target=\"_blank\">ITNOVEM</a>",
                 "tasks": {
                     "audits": "Security audits, Black/white box, Code reviews.",
                     "analysis": "Source code analysis with Checkmarx SAST.",
@@ -69,7 +69,7 @@
                 }
             },
             "sncf": {
-                "position": "Senior lead developer at <a href=\"https://www.sncf.com/\" target=\"_blank\">SNCF</a>",
+                "position": "2023-2024: Senior lead developer at <a href=\"https://www.sncf.com/\" target=\"_blank\">SNCF</a>",
                 "tasks": {
                     "teaching": "Teaches web programming to new developer trainees.",
                     "community-management": "Developers community manager.",
