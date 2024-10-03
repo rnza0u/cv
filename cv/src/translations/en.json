@@ -29,7 +29,7 @@
         "heading": "Skills",
         "programming": {
             "label": "Programming",
-            "content": "Rust (Actix, Tauri), Typescript/Javascript (Node, Angular, React), HTMX, C/C++, Java (Spring Boot), Scala, Python, Android, PHP, Bash"
+            "content": "Rust (Actix, Tauri), Typescript/Javascript (Express, Nest, Angular, React), HTMX, C/C++, Java (Spring Boot), Scala, Python, Android, PHP, Bash"
         },
         "architecture": {
             "label": "Architecture",
@@ -54,8 +54,8 @@
             "vittascience": {
                 "position": "2018: Web developer at <a target=\"_blank\" href=\"https://vittascience.com\">Vittascience</a>",
                 "tasks": {
-                    "website-construction": "Website construction.",
-                    "arduino-web": "Built an Arduino web IDE for young people.",
+                    "website-construction": "Website construction using PHP and MySQL.",
+                    "arduino-web": "Built a full Arduino web IDE for young people.",
                     "community-map": "Built an interative community map."
                 }
             },
@@ -65,15 +65,18 @@
                     "audits": "Security audits, Black/white box, Code reviews.",
                     "analysis": "Source code analysis with Checkmarx SAST.",
                     "training": "Web application security training sessions with developers.",
-                    "development": "In charge of development and architecture for business applications."
+                    "aap": "Lead developer for an event-driven application written using Nest.js.",
+                    "webapps": "In charge of development and architecture for business applications using Spring Boot/Angular."
                 }
             },
             "sncf": {
                 "position": "2023-2024: Senior lead developer at <a href=\"https://www.sncf.com/\" target=\"_blank\">SNCF</a>",
                 "tasks": {
-                    "teaching": "Teaches web programming to new developer trainees.",
-                    "community-management": "Developers community manager.",
-                    "lead-dev-committee": "Member of lead developers committee."
+                    "teaching": "Teaches web programming to new developer trainees (Typescript, Spring Boot, web security and more).",
+                    "community-management": "Developers community manager and speaker.",
+                    "lead-dev-committee": "Member of lead developers committee.",
+                    "aws": "Lead developer for AWS Lambda based applications.",
+                    "security": "Main referent on security architectures recommended in developments."
                 }
             }
         }

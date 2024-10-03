@@ -177,7 +177,20 @@ local blaze = std.extVar('blaze');
             description: 'Serve in dev mode with parcel.',
             options: {
                 commands: [
-                    './node_modules/.bin/parcel build/web/{{ vars.dev.lang }}/index.html'
+                    {
+                        program: './node_modules/.bin/nodemon',
+                        arguments: [
+                            '--ext',
+                            '*',
+                            '--watch',
+                            'src/',
+                            '--exec',
+                            'node src/builder/build.mjs && ./node_modules/.bin/parcel build/web/{{ vars.dev.lang }}/index.html'
+                        ],
+                        environment: {
+                            CV_TARGET: 'web'
+                        }
+                    }
                 ]
             },
             dependencies: ['build-web-files']

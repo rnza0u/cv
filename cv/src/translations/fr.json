@@ -29,7 +29,7 @@
         "heading": "Compétences",
         "programming": {
             "label": "Programmation",
-            "content": "Rust (Actix, Tauri), Typescript/Javascript (Node, Angular, React), HTMX, C/C++, Java (Spring Boot), Scala, Python, Android, PHP, Bash"
+            "content": "Rust (Actix, Tauri), Typescript/Javascript (Express, Nest.js, Angular, React), HTMX, C/C++, Java (Spring Boot), Scala, Python, Android, PHP, Bash"
         },
         "architecture": {
             "label": "Architecture",
@@ -54,8 +54,8 @@
             "vittascience": {
                 "position": "2018: Développeur web à <a target=\"_blank\" href=\"https://vittascience.com\">Vittascience</a>",
                 "tasks": {
-                    "website-construction": "Construction du site web.",
-                    "arduino-web": "Implémentation d'un IDE Arduino web pour les jeunes.",
+                    "website-construction": "Construction du site web avec PHP et MySQL.",
+                    "arduino-web": "Implémentation d'un IDE Arduino web complet pour les jeunes.",
                     "community-map": "Construction d'une carte d'expériences interactive."
                 }
             },
@@ -65,15 +65,18 @@
                     "audits": "Audits de sécurité, Black/white box, audits de code source.",
                     "analysis": "Analyse de code source avec Checkmarx SAST.",
                     "training": "Formations à la sécurité des développeurs.",
-                    "development": "En charge de l'architecture et du développement d'applications métier."
+                    "aap": "Lead developer sur une application event-driven en Nest.js.",
+                    "webapps": "En charge du développement et de l'architecture d'applications métier en Spring Boot/Angular."
                 }
             },
             "sncf": {
                 "position": "2023-2024: Lead développeur senior à <a href=\"https://www.sncf.com/\" target=\"_blank\">SNCF</a>",
                 "tasks": {
                     "teaching": "Formation de plusieurs promotions de développeurs juniors.",
-                    "community-management": "Management de la communauté de développeurs en interne.",
-                    "lead-dev-committee": "Membre du comité des lead développeurs."
+                    "community-management": "Management de la communauté de développeurs et conférencier en interne.",
+                    "lead-dev-committee": "Membre du comité des lead développeurs.",
+                    "aws": "Lead développeur sur des projets d'APIs serverless basées sur AWS.",
+                    "security": "Référent principal sur les architectures de sécurité préconisées dans les développements."
                 }
             }
         }
