@@ -75,7 +75,7 @@
                     "teaching": "Teaches web programming to new developer trainees (Typescript, Spring Boot, web security and more).",
                     "community-management": "Developers community manager and speaker.",
                     "lead-dev-committee": "Member of lead developers committee.",
-                    "aws": "Lead developer on AWS Lambda based applications.",
+                    "aws": "Lead developer on AWS Lambda based applications using Spring Cloud Function.",
                     "security": "Main referent on security architectures recommended in developments."
                 }
             }

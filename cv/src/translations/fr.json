@@ -75,7 +75,7 @@
                     "teaching": "Formation de plusieurs promotions de développeurs juniors.",
                     "community-management": "Management de la communauté de développeurs et conférencier en interne.",
                     "lead-dev-committee": "Membre du comité des lead développeurs.",
-                    "aws": "Lead développeur sur des projets d'APIs serverless basées sur AWS.",
+                    "aws": "Lead développeur sur des projets d'APIs serverless basées sur AWS avec Spring Cloud Function.",
                     "security": "Référent principal sur les architectures de sécurité préconisées dans les développements."
                 }
             }
