@@ -65,7 +65,7 @@
                     "audits": "Security audits, Black/white box, Code reviews.",
                     "analysis": "Source code analysis with Checkmarx SAST.",
                     "training": "Web application security training sessions with developers.",
-                    "aap": "Lead developer for an event-driven application written using Nest.js.",
+                    "aap": "Lead developer on an event-driven application written using Nest.js.",
                     "webapps": "In charge of development and architecture for business applications using Spring Boot/Angular."
                 }
             },
@@ -75,7 +75,7 @@
                     "teaching": "Teaches web programming to new developer trainees (Typescript, Spring Boot, web security and more).",
                     "community-management": "Developers community manager and speaker.",
                     "lead-dev-committee": "Member of lead developers committee.",
-                    "aws": "Lead developer for AWS Lambda based applications.",
+                    "aws": "Lead developer on AWS Lambda based applications.",
                     "security": "Main referent on security architectures recommended in developments."
                 }
             }
