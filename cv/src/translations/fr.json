@@ -72,7 +72,7 @@
             "sncf": {
                 "position": "2023-2024: Lead développeur senior à <a href=\"https://www.sncf.com/\" target=\"_blank\">SNCF</a>",
                 "tasks": {
-                    "teaching": "Formation de plusieurs promotions de développeurs juniors.",
+                    "teaching": "Formation de plusieurs promotions de développeurs juniors (Typescript, Spring Boot, sécurité du web).",
                     "community-management": "Management de la communauté de développeurs et conférencier en interne.",
                     "lead-dev-committee": "Membre du comité des lead développeurs.",
                     "aws": "Lead développeur sur des projets d'APIs serverless basées sur AWS avec Spring Cloud Function.",
