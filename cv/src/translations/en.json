@@ -65,7 +65,7 @@
                     "audits": "Security audits, Black/white box, Code reviews.",
                     "analysis": "Source code analysis with Checkmarx SAST.",
                     "training": "Web application security training sessions with developers.",
-                    "aap": "Lead developer on an event-driven application written in Nest.js.",
+                    "aap": "Lead developer on an IoT event-driven application written in Nest.js.",
                     "webapps": "In charge of development and architecture for business applications written in Spring Boot/Angular."
                 }
             },
