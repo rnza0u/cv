@@ -33,7 +33,7 @@
         },
         "architecture": {
             "label": "Architecture",
-            "content": "Azure Cloud, AWS, Terraform, Docker avec Kubernetes, Ansible, Microservices, Serverless, REST, gRPC"
+            "content": "Azure Cloud, AWS, Terraform, Docker avec Kubernetes, Ansible, Microservices, Serverless, REST, gRPC, GraphQL"
         },
         "cicd": {
             "label": "CI/CD",
