@@ -65,7 +65,7 @@
                     "audits": "Audits de sécurité, Black/white box, audits de code source.",
                     "analysis": "Analyse de code source avec Checkmarx SAST.",
                     "training": "Formations à la sécurité des développeurs.",
-                    "aap": "Lead developer sur une application IoT event-driven en Nest.js.",
+                    "aap": "Lead développeur sur une application IoT event-driven en Nest.js.",
                     "webapps": "En charge du développement et de l'architecture d'applications métier en Spring Boot/Angular."
                 }
             },
