@@ -1,12 +1,9 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { MiddlewareConfig, NextRequest, NextResponse } from 'next/server'
 import { match } from '@formatjs/intl-localematcher'
 import Negotiator from 'negotiator'
-
-const locales = ['fr', 'en'] as const
-const [defaultLocale] = locales
+import { locales, defaultLocale } from './src/translations/locales'
 
 export function middleware(request: NextRequest) {
-
     const { pathname } = request.nextUrl
     const hasLocaleInPath = locales.some(locale => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`))
 
@@ -18,5 +15,11 @@ export function middleware(request: NextRequest) {
     }).languages()
     const locale = match(userLocales, locales, defaultLocale)
     request.nextUrl.pathname = `/${locale}${pathname}`
-    return NextResponse.redirect(request.nextUrl)
+    return NextResponse.rewrite(request.nextUrl)
 }
+
+export const config: MiddlewareConfig = {
+    matcher: [
+        '/((?!_next.*|favicon.ico|sitemap.xml|robots.txt))'
+    ]
+} 

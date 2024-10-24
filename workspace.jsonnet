@@ -1,9 +1,9 @@
 {
     name: 'cv',
     projects: {
-        [path]: path for path in ['ci', 'cv']
+        [path]: path for path in ['ci', 'cv', 'cv-next']
     },
     settings: {
-        defaultSelector: ['cv']
+        defaultSelector: ['cv-next']
     }
 }

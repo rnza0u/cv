@@ -1,0 +1,16 @@
+.position {
+    font-weight: 700;
+    display: block;
+}
+
+.company {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}

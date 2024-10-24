@@ -1,23 +1,36 @@
+import { obfuscate } from '../helpers/obfuscation'
 import { links } from './common'
 import { Translations } from './typing'
 
 export const fr: Translations = {
-    head: {
-        description: 'Renaud N\'zaou, développeur et pentester'
+    metadata: {
+        title: 'Renaud N\'zaou',
+        keywords: ['développeur', 'fullstack', 'ingénieur', 'react', 'angular', 'rust', 'nodejs', 'profil', 'cv', 'renaud', 'n\'zaou'],
+        description: 'Développeur fullstack senior et pentester'
     },
     contact: {
         heading: 'Informations de contact',
         phoneNumber: {
             label: 'Téléphone',
-            value: '06.49.93.91.51'
+            value: obfuscate('06.49.93.91.51')
         },
-        email: 'Adresse email',
-        location: 'Localisation',
+        email: { 
+            label: 'Adresse email',
+            value: obfuscate('nzaou.renaud@gmail.com')
+        },
+        location: {
+            label: 'Localisation',
+            value: 'Lyon, France'
+        },
         showButton: 'Afficher les champs masqués',
         hidden: 'Masqué'
     },
-    title: {
+    header: {
         heading: 'Développeur, Pentester',
+        localeSelectors: {
+            en: 'English',
+            fr: 'Français'
+        },
         introduction: age => <>{age} ans, de Lyon, France</>
     },
     profile: {
@@ -94,13 +107,13 @@ export const fr: Translations = {
         heading: 'Scolarité',
         bac: 'Baccalauréat en 2013',
         lawSchool: 'Étudiant en droit pendant deux ans',
-        esgi: <>Cursus "Architecture logicielle" à {links.esgi.website} ({links.esgi.certificate('Certificat')})</>
+        esgi: <>Cursus &quot;Architecture logicielle&quot; à {links.esgi.website} ({links.esgi.certificate('Certificat')})</>
     },
     links: {
         heading: 'Liens/projets',
-        blaze: <>Je suis l'auteur de {links.blaze}, un système de build pour les monorepos écrit en Rust.</>,
+        blaze: <>Je suis l&apos;auteur de {links.blaze}, un système de build pour les monorepos écrit en Rust.</>,
         github: <>Mon {links.github.current('profil Github')} actuel.</>,
-        oldGithub: <>Mon ancien {links.github.old('profil Github')} d'étudiant.</>
+        oldGithub: <>Mon ancien {links.github.old('profil Github')} d&apos;étudiant.</>
     },
     aboutMe: {
         heading: 'À propos de moi',

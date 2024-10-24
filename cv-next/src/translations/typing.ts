@@ -1,8 +1,11 @@
 import { ReadonlyDeep } from 'type-fest'
+import { Locale } from './locales'
 
 export type Translations = ReadonlyDeep<{
-    head: {
+    metadata: {
+        title: string
         description: string
+        keywords: readonly string[]
     }
     contact: {
         heading: string
@@ -10,13 +13,22 @@ export type Translations = ReadonlyDeep<{
             label: string
             value: string
         }
-        email: string
-        location: string
+        email: {
+            label: string
+            value: string
+        }
+        location: {
+            label: string
+            value: string
+        }
         showButton: string
         hidden: string
     }
-    title: {
+    header: {
         heading: string
+        localeSelectors: {
+            [Key in Locale]: string
+        }
         introduction: (age: number) => JSX.Element
     }
     profile: {

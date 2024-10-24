@@ -1,9 +1,9 @@
-import { ExternalLink } from '../components/ExternalLink'
+import { ExternalLink } from '../components/ExternalLink/ExternalLink'
 
 export const links = {
     vittascience: ExternalLink({
         label: 'Vittascience', 
-        url: 'https://vittascience.com'
+        url: 'https://vittascience.com/'
     }),
     itnovem: ExternalLink({
         label: 'ITNOVEM', 
@@ -25,7 +25,7 @@ export const links = {
     },
     blaze: ExternalLink({
         label: 'Blaze', 
-        url: 'https://blaze-monorepo.dev'
+        url: 'https://blaze-monorepo.dev/'
     }),
     github: {
         current: (label: string) => ExternalLink({
@@ -34,7 +34,7 @@ export const links = {
         }),
         old: (label: string) => ExternalLink({
             label, 
-            url: 'https://github.com/nzaouesgi'
+            url: 'https://github.com/nzaouesgi/'
         })
     }
 } as const

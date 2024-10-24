@@ -1,0 +1,30 @@
+.profile-picture {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 12em;
+    height: 12em;
+    border-radius: 50%;
+    margin-bottom: 8px;
+}
+
+.heading {
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.locale-selectors {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.locale-selector {
+    width: 1.75rem;
+    height: 1.75rem;
+}
+
+.introduction {
+    text-align: center;
+}

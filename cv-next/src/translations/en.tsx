@@ -1,23 +1,36 @@
+import { obfuscate } from '../helpers/obfuscation'
 import { links } from './common'
 import { Translations } from './typing'
 
 export const en: Translations = {
-    head: {
-        description: 'Renaud N\'zaou, programmer and penetration tester'
+    metadata: {
+        title: 'Renaud N\'zaou',
+        keywords: ['developer', 'fullstack', 'engineer', 'react', 'angular', 'rust', 'nodejs', 'profile', 'resume', 'cv', 'renaud', 'n\'zaou'],
+        description: 'Senior fullstack developer and penetration tester.'
     },
     contact: {
         heading: 'Contact information',
         phoneNumber: {
             label: 'Phone number',
-            value: '+33.6.49.93.91.51'
+            value: obfuscate('+33.6.49.93.91.51')
         },
-        email: 'Email address',
-        location: 'Location',
+        email: { 
+            label: 'Email address',
+            value: obfuscate('nzaou.renaud@gmail.com')
+        },
+        location: { 
+            label: 'Location',
+            value: 'Lyon, France'
+        },
         showButton: 'Show hidden fields',
         hidden: 'Hidden'
     },
-    title: {
+    header: {
         heading: 'Developer, Penetration tester',
+        localeSelectors: {
+            en: 'English',
+            fr: 'Français'
+        },
         introduction: age => <>{age} years old, from France, Lyon</>
     },
     profile: {
@@ -94,7 +107,7 @@ export const en: Translations = {
         heading: 'Educational background',
         bac: 'French Baccalauréat in 2013',
         lawSchool: 'Studied law for two years',
-        esgi: <>5 years "Software Architecture" curriculum at {links.esgi.website} ({links.esgi.certificate('Certificate')})</>
+        esgi: <>5 years &quot;Software Architecture&quot; curriculum at {links.esgi.website} ({links.esgi.certificate('Certificate')})</>
     },
     links: {
         heading: 'Links/projects',
