@@ -1,4 +1,3 @@
-import { Suspense } from 'react'
 import { Loader } from '../../src/components/Loader'
 import { getLocaleFromParams, locales, LocalizedParams } from '../../src/translations/locales'
 import { Metadata } from 'next'
@@ -33,7 +32,8 @@ export default async function Resume({ params }: ResumeProps) {
   const locale = await getLocaleFromParams(await params)
   const t = await getTranslations(locale)
   return (
-    <Suspense fallback={<Loader />}>
+    <>
+      <Loader fadeOut />
       <Main>
         <ContactInfo translations={t.contact} />
         <Header translations={t.header} />
@@ -117,6 +117,6 @@ export default async function Resume({ params }: ResumeProps) {
           ]} />
         </Section>
       </Main>
-    </Suspense>
+    </>
   )
 }

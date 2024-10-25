@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { Translations } from '../../translations/typing'
 import Image from 'next/image'
 import { getLocaleFlagImg, locales } from '../../translations/locales'
@@ -18,9 +17,14 @@ export function Header({ translations: t }: HeaderProps){
             </h1>
             <div className={styles['locale-selectors']}>
                 {locales.map((locale, i) => (
-                    <Link href={`/${locale}`} key={i}>
-                        <Image alt={t.localeSelectors[locale]} src={getLocaleFlagImg(locale)} width={50} height={50} className={styles['locale-selector']}/>
-                    </Link>
+                    <a  href={`/${locale}`} key={i}>
+                        <Image 
+                            alt={t.localeSelectors[locale]} 
+                            src={getLocaleFlagImg(locale)} 
+                            width={50} 
+                            height={50} 
+                            className={styles['locale-selector']}/>
+                    </a>
                 ))}
             </div>
             <p className={styles.introduction}>

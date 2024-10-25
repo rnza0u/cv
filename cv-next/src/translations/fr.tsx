@@ -28,8 +28,8 @@ export const fr: Translations = {
     header: {
         heading: 'Développeur, Pentester',
         localeSelectors: {
-            en: 'English',
-            fr: 'Français'
+            en: 'Translate to english',
+            fr: 'Traduire en français'
         },
         introduction: age => <>{age} ans, de Lyon, France</>
     },
