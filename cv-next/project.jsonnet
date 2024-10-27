@@ -27,25 +27,77 @@
                 }
             }
         },
-        'build-web-bundle': {
+        build: {
             executor: 'std:commands',
             options: {
                 commands: ['./node_modules/.bin/next build'],
             },
             cache: {
                 invalidateWhen: {
-                    outputChanges: ['out/**', '.next/**']
+                    outputChanges: ['.next/**']
                 }
             },
             dependencies: ['install', 'source']
         },
-        serve: {
+        pdfs: {
+            local pdfGenPort = '12001',
+            local pidFile = 'pid.file',
             executor: 'std:commands',
             options: {
                 commands: [
                     {
                         program: './node_modules/.bin/next',
-                        arguments: ['dev', '--port', '12000', '--hostname', '127.0.0.1'],
+                        arguments: [
+                            'start',
+                            '--hostname',
+                            '127.0.0.1',
+                            '--port',
+                            pdfGenPort,
+                            '&&',
+                            'echo',
+                            '-n',
+                            '$!',
+                            '>',
+                            pidFile
+                        ],
+                        detach: true,
+                        environment: {
+                            RENDER_MODE: 'pdf',
+                            NODE_ENV: 'production',
+                            ORIGIN: 'http://127.0.0.1:' + pdfGenPort
+                        }
+                    },
+                    {
+                        program: './node_modules/.bin/ts-node',
+                        arguments: ['scripts/export-pdf.mts'],
+                        // onFailure: 'ForceExit'
+                    },
+                    {
+                        program: 'kill',
+                        arguments: [
+                            '-SIGINT', 
+                            '$(cat ' + pidFile +')'
+                        ],
+                        // onFailure: 'ForceExit'
+                    },
+                    {
+                        program: 'rm',
+                        arguments: [pidFile],
+                        // onFailure: 'ForceExit'
+                    }
+                ],
+                shell: true
+            },
+            dependencies: ['build']
+        },
+        serve: {
+            local devPort = '12000',
+            executor: 'std:commands',
+            options: {
+                commands: [
+                    {
+                        program: './node_modules/.bin/next',
+                        arguments: ['dev', '--port', devPort, '--hostname', '127.0.0.1'],
                         environment: {
                             NODE_ENV: 'development'
                         }

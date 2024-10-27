@@ -3,13 +3,14 @@ import { match } from '@formatjs/intl-localematcher'
 import Negotiator from 'negotiator'
 import { locales, defaultLocale, Locale } from './src/translations/locales'
 import { NextURL } from 'next/dist/server/web/next-url'
+import { isProduction } from './src/helpers/config'
 
 const LOCALE_COOKIE_NAME = 'CV_LOCALE'
 const LOCALE_COOKIE_CONFIG = {
     httpOnly: true,
     sameSite: 'lax',
     maxAge: 3600 * 60 * 24 * 7,
-    secure: process.env.NODE_ENV !== 'development'
+    secure: isProduction
 } as const
 const REMOTE_IP_HEADER = 'x-forwarded-for'
 const REMOTE_USER_AGENT_HEADER = 'user-agent'

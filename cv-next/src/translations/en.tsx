@@ -1,4 +1,4 @@
-import { obfuscate } from '../helpers/obfuscation'
+import { obfuscate } from '../helpers/sensitive-value'
 import { links } from './common'
 import { Translations } from './typing'
 

@@ -1,5 +1,6 @@
 import { ReadonlyDeep } from 'type-fest'
 import { Locale } from './locales'
+import { SensitiveValue } from '../helpers/sensitive-value'
 
 export type Translations = ReadonlyDeep<{
     metadata: {
@@ -11,11 +12,11 @@ export type Translations = ReadonlyDeep<{
         heading: string
         phoneNumber: {
             label: string
-            value: string
+            value: SensitiveValue
         }
         email: {
             label: string
-            value: string
+            value: SensitiveValue
         }
         location: {
             label: string

@@ -1,9 +1,10 @@
 import type { NextConfig } from "next"
+import { isProduction } from './src/helpers/config'
 
 const nextConfig: NextConfig = {
   /* config options here */
   poweredByHeader: false,
-  reactStrictMode: process.env.NODE_ENV === 'development'
+  reactStrictMode: isProduction
 }
 
 export default nextConfig

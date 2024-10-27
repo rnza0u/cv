@@ -1,11 +1,12 @@
 'use client'
 
 import { useState } from 'react'
-import { deobfuscate } from '../../helpers/obfuscation'
 import { ExternalLink } from '../ExternalLink/ExternalLink'
 import styles from './contact-info.module.scss'
 import { Translations } from '../../translations/typing'
 import { List } from '../List'
+import { renderMode } from '../../helpers/config'
+import { deobfuscate } from '../../helpers/sensitive-value'
 
 type ContactInfoProps = Readonly<{
     translations: Translations['contact']
@@ -13,13 +14,13 @@ type ContactInfoProps = Readonly<{
 
 export function ContactInfo({ translations: t }: ContactInfoProps){
 
-    const [fieldsHidden, setFieldsHidden] = useState(true)
+    const [fieldsHidden, setFieldsHidden] = useState(renderMode === 'web')
 
     const emailLink = () => {
-        const email = deobfuscate(t.email.value)
+        const rendered = deobfuscate(t.email.value)
         return ExternalLink({
-            label: email,
-            url: `mailto:${email}`
+            label: rendered,
+            url: `mailto:${rendered}`
         })
     }
 

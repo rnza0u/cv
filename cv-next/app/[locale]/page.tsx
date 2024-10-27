@@ -9,6 +9,7 @@ import { Section } from '../../src/components/Section/Section'
 import { List } from '../../src/components/List'
 import { Career } from '../../src/components/Career'
 import { Table } from '../../src/components/Table'
+import { renderMode } from '../../src/helpers/config'
 
 type ResumeProps = Readonly<{
   params: Promise<LocalizedParams>
@@ -33,7 +34,7 @@ export default async function Resume({ params }: ResumeProps) {
   const t = await getTranslations(locale)
   return (
     <>
-      <Loader fadeOut />
+      {renderMode === 'web' && <Loader fadeOut />}
       <Main>
         <ContactInfo translations={t.contact} />
         <Header translations={t.header} />
