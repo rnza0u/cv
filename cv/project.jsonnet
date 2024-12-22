@@ -21,7 +21,7 @@ local blaze = std.extVar('blaze');
       executor: 'std:commands',
       options: {
         commands: [
-          'deno check $(find . -path ./node_modules -prune -o -regex \'.+\\.tsx?\')',
+          'deno check $(find . -path \'./node_modules\' -prune -o -regex \'.+\\.tsx?\')',
         ]
         + (if blaze.vars.lint.fix then ['deno fmt'] else [])
         + [
