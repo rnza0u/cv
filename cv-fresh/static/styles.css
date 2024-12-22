@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #141414;
+  --foreground: #fefefe;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'Crimson Pro', serif;
+}
