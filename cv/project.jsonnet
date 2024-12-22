@@ -1,4 +1,5 @@
 local image = 'registry.rnzaou.me/cv';
+local blaze = std.extVar('blaze');
 
 {
   targets: {
@@ -15,6 +16,22 @@ local image = 'registry.rnzaou.me/cv';
           ],
         },
       },
+    },
+    lint: {
+      executor: 'std:commands',
+      options: {
+        commands: [
+          'deno check $(find . -path ./node_modules -prune -o -regex \'.+\\.tsx?\')',
+        ]
+        + (if blaze.vars.lint.fix then ['deno fmt'] else [])
+        + [
+          {
+            program: 'deno',
+            arguments: ['lint'] + (if blaze.vars.lint.fix then ['--fix'] else [])
+          }
+        ],
+        shell: true
+      }
     },
     install: {
       executor: 'std:commands',
@@ -63,8 +80,8 @@ local image = 'registry.rnzaou.me/cv';
       },
       cache: {
         invalidateWhen: {
-          inputChanges: ['Dockerfile']
-        }
+          inputChanges: ['Dockerfile'],
+        },
       },
       dependencies: ['build-bundle'],
     },
@@ -78,33 +95,66 @@ local image = 'registry.rnzaou.me/cv';
             arguments: [
               'run',
               '--detach',
-              '--name', containerName,
-              '-p', '[::1]:23000:8000/tcp',
-              '-p', '127.0.0.1:23000:8000/tcp',
-              '-e', 'CV_RENDER_MODE=pdf',
-              'registry.rnzaou.me/cv'
-            ]
+              '--name',
+              containerName,
+              '-p',
+              '[::1]:23000:8000/tcp',
+              '-p',
+              '127.0.0.1:23000:8000/tcp',
+              '-e',
+              'CV_RENDER_MODE=pdf',
+              'registry.rnzaou.me/cv',
+            ],
           },
           './node_modules/.bin/playwright install',
           'deno -A scripts/export-to-pdf.ts',
           'docker stop ' + containerName,
-          'docker rm ' + containerName
-        ]
+          'docker rm ' + containerName,
+        ],
       },
       cache: {
         invalidateWhen: {
-          outputChanges: ['pdfs/**']
-        }
+          outputChanges: ['pdfs/**'],
+        },
       },
-      dependencies: ['build-image']
+      dependencies: ['build-image'],
+    },
+    publish: {
+      executor: 'std:commands',
+      options: {
+        commands: [
+          'docker push registry.rnzaou.me/cv',
+        ],
+      },
+      dependencies: ['build-image', 'ci:docker-authenticate'],
+    },
+    deploy: {
+      executor: 'std:commands',
+      options: {
+        commands: [
+          {
+            program: 'docker',
+            arguments: [
+              'compose',
+              'up',
+              '--detach',
+              '--pull',
+              'always',
+              '--force-recreate',
+              '--remove-orphans',
+            ],
+
+          },
+        ],
+      },
     },
     clean: {
       executor: 'std:commands',
       options: {
         commands: [
-          'rm -rf node_modules pdfs _fresh'
-        ]
-      }
-    }
+          'rm -rf node_modules pdfs _fresh',
+        ],
+      },
+    },
   },
 }

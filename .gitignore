@@ -10,4 +10,5 @@ cv/node_modules
 !.blaze/variables.*
 
 .user.env
+user-variables.*
 

@@ -6,7 +6,7 @@ import {
 } from '../src/helpers/server/locale.ts'
 import { redirect } from '../src/helpers/server/redirect.ts'
 
-export const handler: readonly MiddlewareHandler[] = [
+export const handler: MiddlewareHandler[] = [
   (_, ctx) => ctx.destination === 'notFound' ? redirect('/') : ctx.next(),
   (req, ctx) => {
     if (ctx.destination === 'route') {

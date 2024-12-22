@@ -11,7 +11,8 @@ local publish = {
         Step({
             name: 'publish',
             commands: [
-                'blaze --jsonnet-var \'{ playwright: { installDeps: false } }\' run cv:publish',
+                'blaze run cv:lint',
+                'blaze run cv:publish',
                 'blaze run cv:deploy'
             ],
             environment: {

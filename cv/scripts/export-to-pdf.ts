@@ -1,3 +1,5 @@
+/// <reference lib="dom" />
+
 import { chromium } from 'playwright'
 import { join } from '@std/path'
 import { exists } from '@std/fs'

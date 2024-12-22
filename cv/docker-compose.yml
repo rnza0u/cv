@@ -1,0 +1,16 @@
+services:
+  cv:
+    image: registry.rnzaou.me/cv:latest
+    restart: unless-stopped
+    environment:
+      - CV_IP_FROM_PROXY=true
+      - CV_RENDER_MODE=web
+      - CV_PORT=80
+    expose:
+      - 80/tcp
+    networks:
+      - reverse-proxy
+networks:
+  reverse-proxy:
+    external: true
+    name: reverse-proxy

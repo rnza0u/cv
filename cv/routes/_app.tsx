@@ -1,3 +1,4 @@
+import { asset } from '$fresh/src/runtime/utils.ts'
 import { PageProps } from '../src/requests/typing.ts'
 
 export default function App({ Component, state }: PageProps) {
@@ -18,7 +19,7 @@ export default function App({ Component, state }: PageProps) {
           rel='stylesheet'
         >
         </link>
-        <link rel='stylesheet' href='/styles.css' />
+        <link rel='stylesheet' href={asset('/styles.css')} />
       </head>
       <body>
         <Component />
