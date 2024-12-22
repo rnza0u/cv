@@ -123,7 +123,7 @@ local blaze = std.extVar('blaze');
       executor: 'std:commands',
       options: {
         commands: [
-          'docker push registry.rnzaou.me/cv',
+          'docker push ' + image,
         ],
       },
       dependencies: ['build-image', 'ci:docker-authenticate'],
