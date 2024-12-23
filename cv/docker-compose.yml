@@ -1,5 +1,6 @@
 services:
   cv:
+    container_name: cv
     image: registry.rnzaou.me/cv:latest
     restart: unless-stopped
     environment:

@@ -11,7 +11,7 @@ export const handler: MiddlewareHandler[] = [
     }
     ctx.state.locale = paramsLocale
     const response = await ctx.next()
-    if (ctx.state.cookieLocale && paramsLocale !== ctx.state.cookieLocale) {
+    if (paramsLocale !== ctx.state.cookieLocale) {
       setLocaleCookie(paramsLocale, response)
     }
     return response
