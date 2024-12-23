@@ -8,7 +8,7 @@ export function Main({ children }: MainProps) {
   return (
     <main
       role='main'
-      className='py-2 md:mx-[17.5vw] md:p-4 flex flex-col gap-4'
+      className='p-2 md:mx-[17.5vw] md:py-4 md:px-0 flex flex-col gap-4'
     >
       {children}
     </main>
