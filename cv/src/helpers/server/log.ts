@@ -10,7 +10,6 @@ const ipFromProxy = Deno.env.get('CV_IP_FROM_PROXY') === 'true'
 
 export function logRequest(request: Request, ctx: Context): void {
   const date = new Date().toLocaleString('fr')
-  console.log(request.headers.get(REMOTE_IP_PROXY_HEADER), { ipFromProxy })
   const ip = ipFromProxy
     ? (request.headers.get(REMOTE_IP_PROXY_HEADER) ?? '?')
     : ctx.remoteAddr.hostname
