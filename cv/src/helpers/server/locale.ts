@@ -43,8 +43,7 @@ export function inferLocaleFromRequest(request: Request): Locale {
       headers: Object.fromEntries(request.headers.entries()),
     }).languages()
     return match(userLocales, locales, defaultLocale) as Locale
-  } catch (err) {
-    console.error(err)
+  } catch (_) {
     return defaultLocale
   }
 }
