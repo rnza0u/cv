@@ -28,6 +28,7 @@
     "$fresh/": "https://deno.land/x/fresh@1.7.3/",
     "@std/fs": "jsr:@std/fs@^1.0.8",
     "@std/path": "jsr:@std/path@^1.0.8",
+    "@tailwindcss/postcss": "npm:@tailwindcss/postcss@^4.1.6",
     "preact": "https://esm.sh/preact@10.22.0",
     "preact/": "https://esm.sh/preact@10.22.0/",
     "@preact/compat": "https://esm.sh/@preact/compat@18.3.1/",
@@ -43,7 +44,7 @@
     "@formatjs/intl-localematcher": "https://esm.sh/@formatjs/intl-localematcher@^0.5.9",
     "negotiator": "https://esm.sh/negotiator@^1.0.0",
     "cookie": "https://esm.sh/cookie@^1.0.2",
-    "playwright": "npm:playwright@^1.49.1"
+    "playwright": "npm:playwright@^1.52.0"
   },
   "compilerOptions": {
     "jsx": "react-jsx",
