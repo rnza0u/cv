@@ -17,8 +17,7 @@ export default function App({ Component, state }: PageProps) {
         <link
           href='https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;700&display=swap'
           rel='stylesheet'
-        >
-        </link>
+        />
         <link rel='stylesheet' href={asset('/styles.css')} />
       </head>
       <body>
