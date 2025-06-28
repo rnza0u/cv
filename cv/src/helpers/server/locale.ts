@@ -1,4 +1,4 @@
-import { match } from '@formatjs/intl-localematcher'
+import { match as localeMatch } from '@formatjs/intl-localematcher'
 import Negotiator from 'negotiator'
 import { defaultLocale, Locale, locales } from '../../translations/locales.ts'
 import cookie from 'cookie'
@@ -42,7 +42,7 @@ export function inferLocaleFromRequest(request: Request): Locale {
     const userLocales = new Negotiator({
       headers: Object.fromEntries(request.headers.entries()),
     }).languages()
-    return match(userLocales, locales, defaultLocale) as Locale
+    return localeMatch(userLocales, locales, defaultLocale) as Locale
   } catch (_) {
     return defaultLocale
   }

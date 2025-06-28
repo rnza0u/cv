@@ -44,7 +44,7 @@
     "@formatjs/intl-localematcher": "https://esm.sh/@formatjs/intl-localematcher@^0.5.9",
     "negotiator": "https://esm.sh/negotiator@^1.0.0",
     "cookie": "https://esm.sh/cookie@^1.0.2",
-    "playwright": "npm:playwright@^1.52.0"
+    "playwright": "npm:playwright@^1.53.1"
   },
   "compilerOptions": {
     "jsx": "react-jsx",

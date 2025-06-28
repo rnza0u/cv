@@ -50,7 +50,13 @@ local blaze = std.extVar('blaze');
       executor: 'std:commands',
       options: {
         commands: [
-          'deno task start',
+          {
+            program: 'deno',
+            arguments: ['task', 'start'],
+            environment: {
+              CV_ENVIRONMENT: 'development'
+            }
+          }
         ],
       },
       dependencies: ['install'],
