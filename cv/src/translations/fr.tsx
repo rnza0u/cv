@@ -129,7 +129,6 @@ export const fr: Translations = {
   education: {
     heading: 'Scolarité',
     bac: 'Baccalauréat en 2013',
-    lawSchool: 'Étudiant en droit pendant deux ans',
     esgi: (
       <>
         Cursus &quot;Architecture logicielle&quot; à {links.esgi.website}{' '}

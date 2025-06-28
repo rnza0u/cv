@@ -105,7 +105,6 @@ export type Translations = ReadonlyDeep<{
   education: {
     heading: string
     bac: string
-    lawSchool: string
     esgi: JSX.Element
   }
   links: {

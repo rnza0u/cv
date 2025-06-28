@@ -95,7 +95,6 @@ export function Resume({ translations: t, mode }: ResumeProps) {
           <List
             items={[
               t.education.bac,
-              t.education.lawSchool,
               t.education.esgi,
             ]}
           />

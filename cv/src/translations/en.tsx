@@ -129,7 +129,6 @@ export const en: Translations = {
   education: {
     heading: 'Educational background',
     bac: 'French Baccalauréat in 2013',
-    lawSchool: 'Studied law for two years',
     esgi: (
       <>
         5 years &quot;Software Architecture&quot; curriculum at{' '}
